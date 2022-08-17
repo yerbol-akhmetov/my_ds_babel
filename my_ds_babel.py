@@ -36,8 +36,17 @@ def sql_to_csv(database, table_name):
 
     # Obtaining CSV string from CSV object
     csv_string = csvfile.csv_string
+    #aa = ''.join(csv_string)
+    #print(len(aa.split('\n')))
 
     # Closing the SQL query
     conn.close()
 
     return ''.join(csv_string)
+
+
+db_filename = "all_fault_line.db"
+table_name = "fault_lines"
+csv_string = sql_to_csv(db_filename, table_name)
+data = csv_string.split("\n")
+print(data)
