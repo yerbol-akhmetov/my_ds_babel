@@ -20,7 +20,7 @@ def sql_to_csv(database, table_name):
     
     # creating CSV opject and writer
     csvfile = csvTextBuilder()
-    writer = csv.writer(csvfile)
+    writer = csv.writer(csvfile, lineterminator='\n')
 
     # Retrieving column names and writing to CSV object
     db_colnames = conn.execute(f"SELECT name FROM pragma_table_info('{table_name}')")
