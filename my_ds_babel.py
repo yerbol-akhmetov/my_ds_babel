@@ -32,21 +32,20 @@ def sql_to_csv(database, table_name):
 
     # Retrieving content of table and writing it to CSV object
     db_content = conn.execute(F"SELECT * FROM {table_name}")
-    writer.writerow(db_content)
+    writer.writerows(db_content)
 
     # Obtaining CSV string from CSV object
-    csv_string = csvfile.csv_string
-    #aa = ''.join(csv_string)
-    #print(len(aa.split('\n')))
+    csv_array = csvfile.csv_string
+    csv_string = ''.join(csv_array)[:-1]
 
     # Closing the SQL query
     conn.close()
 
-    return ''.join(csv_string)
+    return csv_string
 
 
 db_filename = "all_fault_line.db"
 table_name = "fault_lines"
 csv_string = sql_to_csv(db_filename, table_name)
 data = csv_string.split("\n")
-print(data)
+#print(data)
