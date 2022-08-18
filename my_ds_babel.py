@@ -72,10 +72,15 @@ def csv_to_sql(csv_content, database, table_name):
     cur.close()
     conn.close()
     
-"""
+
 db_filename = "all_fault_line.db"
 table_name = "fault_lines"
-csv_string = sql_to_csv(db_filename, table_name)
-data = csv_string.split("\n")
-#print(data)
-"""
+csv_filename = "list_volcano.csv"
+
+# Converting from SQL to CSV
+print(sql_to_csv(db_filename, table_name))
+
+# Converting from CSV to SQL
+csv_content = open("list_volcano.csv")
+csv_to_sql(csv_content, "list_volcanos.db", 'volcanos')
+csv_content.close()
