@@ -72,9 +72,10 @@ def csv_to_sql(csv_content, database, table_name):
     cur.close()
     conn.close()
     
-
+"""
 db_filename = "all_fault_line.db"
 table_name = "fault_lines"
 csv_string = sql_to_csv(db_filename, table_name)
 data = csv_string.split("\n")
 #print(data)
+"""
