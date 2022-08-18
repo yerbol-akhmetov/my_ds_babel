@@ -2,19 +2,17 @@
 ***
 
 ## Task
-TODO - What is the problem? And where is the challenge?
+The main task is to create two functions "sql_to_csv" and "csv_to_sql" that are able to convert data from one format to another. 
 
 ## Description
-TODO - How have you solved the problem?
+The problem is solved by creation of two functions: 1) sql_to_csv function reads sql database and retrieves all data and column names, which are further written to csv string; 2) csv_to_sql function reads csv string and writes its content to sql database.
 
 ## Installation
-TODO - How to install your project? npm install? make? make re?
+There is no explicit installation of the project required. Running the command "python my_ds_babel.py" will execute the code.
 
 ## Usage
-TODO - How does it work?
-```
-./my_project argument1 argument2
-```
+To use the functions, they can be copied directly from the my_ds_babel.py file, or they can be imported using import command.
+
 
 ### The Core Team
 
