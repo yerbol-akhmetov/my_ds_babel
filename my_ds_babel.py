@@ -61,7 +61,7 @@ def csv_to_sql(csv_content, database, table_name):
     # loading all data to database
     insert_query = f"INSERT INTO {table_name} VALUES "
     for row in csvreader:
-        while len(row) < 6:
+        while len(row) < len(fieldnames):
             row.append('NULL')
         line = f"{row}".replace('[','(').replace(']',')')
         insert_query += line + ', '
