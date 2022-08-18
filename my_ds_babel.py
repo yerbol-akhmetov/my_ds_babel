@@ -40,9 +40,38 @@ def sql_to_csv(database, table_name):
 
     # Closing the SQL query
     conn.close()
-
     return csv_string
 
+
+# Function that converts data from CSV formatted string to SQL formatted database
+def csv_to_sql(csv_content, database, table_name):
+    rows = []
+    csvreader = csv.reader(csv_content)
+    
+    # create a file of SQL database and cursor
+    conn = sqlite3.connect(database)
+    cur = conn.cursor()
+    
+    # retrieve fieldnames from CSV string
+    fieldnames = next(csvreader)
+    
+    # create table if not exist with column names
+    cur.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ([{fieldnames[0]}] varchar(255), [{fieldnames[1]}] varchar(255), [{fieldnames[2]}] varchar(255), [{fieldnames[3]}] varchar(255), [{fieldnames[4]}] varchar(255), [{fieldnames[5]}] varchar(255))")
+    
+    # loading all data to database
+    insert_query = f"INSERT INTO {table_name} VALUES "
+    for row in csvreader:
+        while len(row) < 6:
+            row.append('NULL')
+        line = f"{row}".replace('[','(').replace(']',')')
+        insert_query += line + ', '
+    cur.execute(insert_query.strip(', '))
+
+    # commiting the changes and closing objects
+    conn.commit()
+    cur.close()
+    conn.close()
+    
 
 db_filename = "all_fault_line.db"
 table_name = "fault_lines"
