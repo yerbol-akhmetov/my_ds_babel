@@ -56,7 +56,11 @@ def csv_to_sql(csv_content, database, table_name):
     fieldnames = next(csvreader)
     
     # create table if not exist with column names
-    cur.execute(f"CREATE TABLE IF NOT EXISTS {table_name} ([{fieldnames[0]}] varchar(255), [{fieldnames[1]}] varchar(255), [{fieldnames[2]}] varchar(255), [{fieldnames[3]}] varchar(255), [{fieldnames[4]}] varchar(255), [{fieldnames[5]}] varchar(255))")
+    create_string = f"CREATE TABLE IF NOT EXISTS {table_name} ("
+    for col in fieldnames:
+        create_string += f"[{col}] varchar(255), "
+    exec_string = create_string.strip(', ') + ")"
+    cur.execute(exec_string)
     
     # loading all data to database
     insert_query = f"INSERT INTO {table_name} VALUES "
